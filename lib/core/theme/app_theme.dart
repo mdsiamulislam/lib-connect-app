@@ -22,9 +22,9 @@ class AppTheme {
     appBarTheme: AppBarTheme(
       centerTitle: true,
       elevation: 0,
-      backgroundColor: Colors.transparent,
+      backgroundColor: lightBackgroundColor,
       titleTextStyle: GoogleFonts.ubuntu(
-        fontSize: 20,
+        fontSize: 28,
         fontWeight: FontWeight.w800,
         color: Colors.black,
       ),

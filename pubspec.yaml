@@ -17,6 +17,15 @@ dependencies:
   # Route management
   go_router: ^17.0.1
 
+  # State management
+  get: ^4.7.3
+
+  # Storage
+  get_storage: ^2.1.1
+
+    # HTTP requests
+  http: ^1.6.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

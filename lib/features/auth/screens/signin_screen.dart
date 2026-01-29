@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:libconnect/features/auth/controllers/signin_controller.dart';
+import 'package:get/get.dart';
 
 import '../widgets/input_widget.dart';
 
@@ -9,6 +11,7 @@ class SigninScreen extends StatelessWidget {
   Widget build(BuildContext context) {
 
     bool isDark = Theme.of(context).brightness == Brightness.dark;
+    final SigninController signinController = Get.put(SigninController());
 
     return Scaffold(
       appBar: AppBar(title: const Text('Sign In')),
@@ -41,9 +44,9 @@ class SigninScreen extends StatelessWidget {
                 const SizedBox(height: 30),
 
 
-                InputWidget(isDark: isDark, label: 'Email Address', hintText: 'Enter your email address'),
+                InputWidget(isDark: isDark, label: 'Email Address', hintText: 'Enter your email address', controller: signinController.usernameController),
                 const SizedBox(height: 20),
-                InputWidget(isDark: isDark, label: 'Password', hintText: 'Enter you password'),
+                InputWidget(isDark: isDark, label: 'Password', hintText: 'Enter you password', controller: signinController.passwordController),
                 Align(
                   alignment: Alignment.centerRight,
                   child: TextButton(
@@ -56,13 +59,22 @@ class SigninScreen extends StatelessWidget {
                   width: double.infinity,
                   height: 50,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      signinController.signIn();
+                    },
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),
                     ),
-                    child: const Text('Sign In', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
+                    child: Obx(
+                        ()=> signinController.isLoading.value
+                        ? const CircularProgressIndicator(
+                          color: Colors.white,
+                          padding: EdgeInsets.all(2.0),
+                        )
+                        : Text('Sign In', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600))
+                    ),
                   ),
                 ),
 

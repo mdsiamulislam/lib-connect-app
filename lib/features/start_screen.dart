@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:libconnect/features/library/screens/library_discover_screen.dart';
+import 'package:libconnect/features/library/screens/library_screen.dart';
 
 import 'home/screens/home_screen.dart';
 
@@ -14,8 +16,13 @@ class _StartScreenState extends State<StartScreen> {
 
   final List<Widget> _screens = const [
     HomeScreen(),
-    LibraryScreen(),
-    SettingsScreen(),
+    LibraryDiscoverScreen(),
+    LibraryScreen(
+      libraryImage: 'assets/images/library_placeholder.png',
+      libraryName: 'My Library',
+      libraryDescription: 'A collection of my favorite books.',
+      libraryId: 1,
+    ),
   ];
 
   @override
@@ -50,14 +57,6 @@ class _StartScreenState extends State<StartScreen> {
 }
 
 
-class LibraryScreen extends StatelessWidget {
-  const LibraryScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(child: Text('Library Screen'));
-  }
-}
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
